@@ -1,0 +1,9 @@
+# Changes here will be overwritten by Copier
+_commit: '1.5'
+_src_path: gh:acid9reen/python_template
+author: Ruslan Smirnov
+package_name: egmlib
+project_name: EGM Lib
+project_short_description: EGM library for other projects
+python_version: '3.10'
+

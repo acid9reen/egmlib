@@ -1,0 +1,74 @@
+[build-system]
+# Minimum requirements for the build system to execute.
+requires = ["setuptools", "wheel"]  # PEP 508 specifications.
+
+[project]
+name = "egmlib"
+authors = [
+    {name = "Ruslan Smirnov"},
+]
+description = "EGM library for other projects"
+readme = "README.md"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]
+dev = [
+    "egmlib[test]",
+    "ruff",
+    "mypy",
+    "pre-commit",
+]
+
+[tool.setuptools.package-data]
+"egmlib" = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+show_error_codes = true
+files = ["src/"]
+exclude = '''(?x)^(
+    .git/|
+    .venv/|
+    venv/|
+  )$'''
+
+[tool.ruff]
+src = ["src", "tests"]
+output-format="full"
+show-fixes=true
+
+[tool.ruff.lint]
+select = [
+    "B",  # flake8-bugbear
+    "D",  # pydocstyle
+    "E",  # pycodestyle
+    "F",  # pyflakes
+    "I",  # isort
+    "Q",  # flake8-quotes
+]
+ignore = [
+    "D100", # Docstring in public module
+    "D101", # Docstring in public class
+    "D102", # Docstring in public method
+    "D103", # Docstring in public function
+    "D104", # Docstring in public package
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
