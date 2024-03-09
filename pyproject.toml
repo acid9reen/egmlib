@@ -52,6 +52,7 @@ exclude = '''(?x)^(
 src = ["src", "tests"]
 output-format="full"
 show-fixes=true
+line-length = 100
 
 [tool.ruff.lint]
 select = [
