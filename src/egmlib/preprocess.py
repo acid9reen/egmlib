@@ -22,6 +22,9 @@ def downsample(
             f"Текущая частота ({frequency}) должна делиться нацело на целевую ({target_frequency})"
         )
 
+    if q == 1:
+        return signal
+
     downsampled: _AT = decimate(signal, q=q, ftype=ftype, axis=-1)  # type: ignore
 
     return downsampled
