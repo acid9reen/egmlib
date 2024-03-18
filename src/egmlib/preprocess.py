@@ -41,6 +41,13 @@ def highpass_filter(
 
 
 def moving_avg_filter(signal: _AT, *, size: int = 3) -> _AT:
-    filtered: _AT = np.convolve(signal, np.ones(size)/size, mode="valid")  # type: ignore
+    filtered: _AT = np.convolve(signal, np.ones(size)/size, mode="same")  # type: ignore
 
     return filtered
+
+
+def moving_avg_filter_multichannel(signal: _AT, *, size: int = 3) -> _AT:
+    for indesignal, channel in enumerate(signal):
+        signal[indesignal] = moving_avg_filter(channel, size=size)
+
+    return signal
