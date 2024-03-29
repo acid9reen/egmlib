@@ -51,3 +51,9 @@ def moving_avg_filter_multichannel(signal: _AT, *, size: int = 3) -> _AT:
         signal[indesignal] = moving_avg_filter(channel, size=size)
 
     return signal
+
+
+def scale(signal: _AT) -> _AT:
+    factor = max(abs(signal.max()), abs(signal.min()))
+
+    return signal / factor
